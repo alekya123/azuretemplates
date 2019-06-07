@@ -15,7 +15,7 @@
       },
       "repoUrl": {
           "type": "string",
-          "defaultValue": "https://github.com/michaeljqzq/devops-iot-sample.git"
+          "defaultValue": "https://github.com/alekya123/azuretemplates.git"
       }
   },
   "variables": {
