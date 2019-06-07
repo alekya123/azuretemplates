@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+      "iotHubName": {
+          "type": "string"
+      },
+      "iotHubSku": {
+          "type": "string"
+      },
+      "iotHubCapacity": {
+          "type": "int",
+          "minValue": 1,
+          "defaultValue": 1
+      },
+      "repoUrl": {
+          "type": "string",
+          "defaultValue": "https://github.com/michaeljqzq/devops-iot-sample.git"
+      }
+  },
+  "variables": {
+      "resourceLocation": "[resourceGroup().location]"
+  },
+  "resources": [
+      {
+          "type": "Microsoft.Devices/IotHubs",
+          "sku": {
+              "name": "[parameters('iotHubSku')]",
+              "capacity": "[parameters('iotHubCapacity')]"
+          },
+          "name": "[parameters('iotHubName')]",
+          "apiVersion": "2016-02-03",
+          "location": "[variables('resourceLocation')]",
+          "tags": {},
+          "properties": {
+              "eventHubEndpoints": {
+                  "events": {
+                      "retentionTimeInDays": 1,
+                      "partitionCount": 2
+                  },
+                  "operationsMonitoringEvents": {
+                    "retentionTimeInDays": 1,
+                    "partitionCount": 2
+                  }
+              },
+              "enableFileUploadNotifications": false,
+              "features": "None"
+          }
+      }
+  ]
+}
