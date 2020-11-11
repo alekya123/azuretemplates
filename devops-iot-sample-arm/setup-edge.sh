@@ -1,5 +1,6 @@
 #!/bin/sh
 # If parameter doesn't exist or empty (not first time deploy), then do not do setup work
+#testing zenhub slack notifications
 if [ ! -z "$1" ]; then
 # Or it will block next scripts.
 export DEBIAN_FRONTEND="noninteractive"
